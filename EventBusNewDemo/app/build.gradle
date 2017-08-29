@@ -1,0 +1,35 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'           //EventBus 加速模式
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "26.0.0"
+
+    defaultConfig {
+        applicationId "com.example.zz.eventbusnewdemo"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    apt 'org.greenrobot:eventbus-annotation-processor:3.0.1'     //EventBus 加速模式
+}
+
+apt {                                                                //EventBus 加速模式
+    arguments {
+        eventBusIndex "com.afei.test.MyEventBusIndex"
+    }
+}
